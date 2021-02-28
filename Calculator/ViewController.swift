@@ -18,6 +18,23 @@ class ViewController: UIViewController {
         
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
+        
+        guard let number = Double(displayLabel.text!) else {
+            fatalError("Cannot convert display label text to a double")
+        }
+        
+        if let calcMethod = sender.currentTitle {
+            switch calcMethod {
+            case "+/-":
+                displayLabel.text = String(number * -1.0)
+            case "AC":
+                displayLabel.text = "0"
+            case "%":
+                displayLabel.text = String(number * 0.01)
+            default:
+                fatalError("Cannot assign calc method")
+            }
+        }
     
     }
 
